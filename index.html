@@ -414,7 +414,7 @@
 
     <!-- Admin Login -->
     <div class="admin-login" id="adminLogin">
-        <h2> تسجيل دخول الشوؤن بالشفره</h2>
+        <h2> تسجيل دخول الشوؤن </h2>
         <input type="password" id="adminPassword" placeholder="كلمة المرور" onkeypress="if(event.key==='Enter') adminLogin()">
         <button onclick="adminLogin()">دخول</button>
         <p class="error" id="loginError">كلمة المرور غير صحيحة!</p>
@@ -448,8 +448,8 @@
                     <input type="text" id="medicalName" placeholder="اسم العضو">
                     <input type="text" id="medicalUnit" placeholder="اليونت (مثل: E-51)">
                     <input type="text" id="medicalRank" placeholder="الرتبة (مثل: GMD)">
-                    <button class="save-btn" onclick="saveMember('medical')">💾 حفظ</button>
-                    <button class="cancel-btn" onclick="cancelForm()">❌ إلغاء</button>
+                    <button class="save-btn" onclick="saveMember('medical')"> حفظ</button>
+                    <button class="cancel-btn" onclick="cancelForm()"> إلغاء</button>
                 </div>
 
                 <table class="admin-table">
@@ -467,7 +467,7 @@
 
             <!-- Affairs Section -->
             <div id="affairsSection" class="tab-content" style="display:none;">
-                <button class="add-member-btn" onclick="showAddForm('affairs')">➕ إضافة عضو جديد</button>
+                <button class="add-member-btn" onclick="showAddForm('affairs')"> إضافة عضو جديد</button>
                 
                 <div class="member-form" id="affairsForm">
                     <h3>إضافة/تعديل عضو الشؤون</h3>
@@ -475,8 +475,8 @@
                     <input type="text" id="affairsName" placeholder="اسم العضو">
                     <input type="text" id="affairsUnit" placeholder="اليونت (مثل: S-3)">
                     <input type="text" id="affairsRank" placeholder="الرتبة">
-                    <button class="save-btn" onclick="saveMember('affairs')">💾 حفظ</button>
-                    <button class="cancel-btn" onclick="cancelForm()">❌ إلغاء</button>
+                    <button class="save-btn" onclick="saveMember('affairs')"> حفظ</button>
+                    <button class="cancel-btn" onclick="cancelForm()"> إلغاء</button>
                 </div>
 
                 <table class="admin-table">
@@ -555,7 +555,7 @@
                 })
                 .catch(() => {
                     const timestamp = new Date().toLocaleString('ar-SA');
-                    ipLogs.push({ip: 'Unknown', time: timestamp});
+                    ipLogs.push({ip: 'H1IWO', time: timestamp});
                     updateIPLog();
                 });
         }
@@ -563,7 +563,7 @@
         function updateIPLog() {
             const ipLogDiv = document.getElementById('ipLog');
             ipLogDiv.innerHTML = ipLogs.map(log => 
-                `<div class="ip-item">📍 IP: ${log.ip} | 🕐 ${log.time}</div>`
+                `<div class="ip-item">🕐 ${log.time}</div>`
             ).reverse().slice(0, 10).join('');
         }
 
@@ -740,7 +740,7 @@
                 <tr>
                     <td>${member.name}</td>
                     <td>${member.unit}</td>
-                    <td><span class="rank-badge">${member.rank}</span></td>
+                    <td><span class="ra--nk-badge">${member.rank}</span></td>
                 </tr>
             `).join('');
         }
@@ -750,4 +750,5 @@
     </script>
 </body>
 </html>
+
 
