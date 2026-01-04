@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -6,457 +5,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>وزارة الصحة - LegestyCity</title>
     
-    <!-- Open Graph Meta Tags for Discord/Social Media -->
     <meta property="og:title" content="وزارة الصحة - LegestyCity EMS">
-    <meta property="og:description" content="خدمة صحية متميزة لمجتمع أفضل | Ministry of Health - Emergency Medical Services">
+    <meta property="og:description" content="خدمة صحية متميزة لمجتمع أفضل">
     <meta property="og:image" content="https://i.ibb.co/fdLhRRY7/9568662668-105488459440074-1767511325549.png">
-    <meta property="og:url" content="https://yourwebsite.com">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="LegestyCity EMS">
-    
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="وزارة الصحة - LegestyCity EMS">
-    <meta name="twitter:description" content="خدمة صحية متميزة لمجتمع أفضل">
-    <meta name="twitter:image" content="https://i.ibb.co/fdLhRRY7/9568662668-105488459440074-1767511325549.png">
-    
-    <!-- Theme Color -->
     <meta name="theme-color" content="#8B0000">
+    
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%);
-            min-height: 100vh;
-        }
-
-        header {
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            padding: 20px 0;
-        }
-
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
-
-        .logo-section {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .logo svg {
-            width: 35px;
-            height: 35px;
-            fill: white;
-        }
-
-        .title-section h1 {
-            color: #333;
-            font-size: 24px;
-            margin-bottom: 5px;
-        }
-
-        .title-section p {
-            color: #666;
-            font-size: 14px;
-        }
-
-        .menu-toggle {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            padding: 10px;
-        }
-
-        .menu-toggle span {
-            width: 30px;
-            height: 3px;
-            background: #8B0000;
-            border-radius: 2px;
-            transition: all 0.3s;
-        }
-
-        .nav-menu {
-            position: fixed;
-            top: 0;
-            right: -300px;
-            width: 300px;
-            height: 100vh;
-            background: white;
-            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
-            transition: right 0.3s;
-            z-index: 1000;
-            padding: 80px 30px 30px;
-        }
-
-        .nav-menu.active {
-            right: 0;
-        }
-
-        .nav-menu a {
-            display: block;
-            padding: 15px 0;
-            color: #333;
-            text-decoration: none;
-            font-size: 18px;
-            border-bottom: 1px solid #eee;
-            transition: color 0.3s;
-        }
-
-        .nav-menu a:hover {
-            color: #8B0000;
-        }
-
-        .close-menu {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            font-size: 30px;
-            cursor: pointer;
-            color: #8B0000;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        .section {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-
-        .section h2 {
-            color: #8B0000;
-            margin-bottom: 25px;
-            font-size: 28px;
-            border-right: 4px solid #8B0000;
-            padding-right: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .section h2 svg {
-            width: 28px;
-            height: 28px;
-            fill: #DC143C;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
-
-        .stat-card {
-            background: white;
-            color: #8B0000;
-            padding: 30px;
-            border-radius: 12px;
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%);
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(139,0,0,0.2);
-        }
-        
-        .stat-icon {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%);
-            border-radius: 50%;
-        }
-        
-        .stat-icon svg {
-            width: 32px;
-            height: 32px;
-            fill: white;
-        }
-
-        .stat-card h3 {
-            font-size: 40px;
-            margin-bottom: 10px;
-            color: #8B0000;
-        }
-
-        .stat-card p {
-            font-size: 16px;
-            color: #DC143C;
-            font-weight: 600;
-        }
-
-        .officials-grid {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 25px;
-            max-width: 400px;
-            margin: 0 auto;
-        }
-
-        .official-card {
-            background: #f8f9fa;
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-            width: 100%;
-        }
-
-        .official-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        }
-
-        .official-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%);
-            margin: 0 auto 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-        
-        .official-img svg {
-            width: 60px;
-            height: 60px;
-            fill: white;
-        }
-
-        .official-card h3 {
-            color: #333;
-            margin-bottom: 8px;
-            font-size: 18px;
-        }
-
-        .official-card p {
-            color: #8B0000;
-            font-weight: bold;
-        }
-
-        .location-section {
-            text-align: center;
-        }
-
-        .location-img {
-            width: 100%;
-            max-width: 800px;
-            height: 450px;
-            border-radius: 12px;
-            margin: 20px auto;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            position: relative;
-            background: url('https://i.ibb.co/fdLhRRY7/9568662668-105488459440074-1767511325549.png') center center / cover no-repeat, linear-gradient(135deg, #8B0000 0%, #DC143C 100%);
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-        }
-        
-        .location-img img {
-            display: none;
-        }
-        
-        .location-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(139,0,0,0.95) 0%, rgba(139,0,0,0.7) 50%, transparent 100%);
-            padding: 30px;
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-            text-align: center;
-            z-index: 2;
-        }
-
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            display: none;
-            z-index: 999;
-        }
-
-        .overlay.active {
-            display: block;
-        }
-        
-        .apply-section {
-            text-align: center;
-            margin-top: 30px;
-        }
-        
-        .apply-btn {
-            display: inline-block;
-            padding: 18px 50px;
-            background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 20px;
-            font-weight: bold;
-            transition: all 0.3s;
-            box-shadow: 0 5px 20px rgba(139,0,0,0.3);
-            border: none;
-            cursor: pointer;
-        }
-        
-        .apply-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(139,0,0,0.4);
-        }
-        
-        .apply-btn:active {
-            transform: translateY(-1px);
-        }
-        
-        footer {
-            background: rgba(255,255,255,0.1);
-            color: white;
-            text-align: center;
-            padding: 30px 20px;
-            margin-top: 50px;
-            backdrop-filter: blur(10px);
-        }
-        
-        footer p {
-            margin: 5px 0;
-            font-size: 16px;
-        }
-        
-        footer .copyright {
-            font-weight: bold;
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%); min-height: 100vh; }
+        header { background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 20px 0; position: sticky; top: 0; z-index: 100; }
+        .header-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+        .logo-section { display: flex; align-items: center; gap: 15px; }
+        .logo { width: 60px; height: 60px; background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+        .logo svg { width: 35px; height: 35px; fill: white; }
+        .title-section h1 { color: #333; font-size: 24px; margin-bottom: 5px; }
+        .title-section p { color: #666; font-size: 14px; }
+        .menu-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 10px; }
+        .menu-toggle span { width: 30px; height: 3px; background: #8B0000; border-radius: 2px; transition: all 0.3s; }
+        .nav-menu { position: fixed; top: 0; right: -300px; width: 300px; height: 100vh; background: white; box-shadow: -2px 0 10px rgba(0,0,0,0.1); transition: right 0.3s; z-index: 1000; padding: 80px 30px 30px; overflow-y: auto; }
+        .nav-menu.active { right: 0; }
+        .nav-menu a { display: block; padding: 15px 0; color: #333; text-decoration: none; font-size: 18px; border-bottom: 1px solid #eee; transition: color 0.3s; }
+        .nav-menu a:hover { color: #8B0000; }
+        .close-menu { position: absolute; top: 20px; left: 20px; font-size: 30px; cursor: pointer; color: #8B0000; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        .section { background: white; border-radius: 15px; padding: 30px; margin-bottom: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .section h2 { color: #8B0000; margin-bottom: 25px; font-size: 28px; border-right: 4px solid #8B0000; padding-right: 15px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
+        .stat-card { background: white; color: #8B0000; padding: 30px; border-radius: 12px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; box-shadow: 0 3px 10px rgba(0,0,0,0.1); position: relative; }
+        .stat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%); }
+        .stat-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(139,0,0,0.2); }
+        .stat-icon { width: 60px; height: 60px; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%); border-radius: 50%; }
+        .stat-icon svg { width: 32px; height: 32px; fill: white; }
+        .stat-card h3 { font-size: 40px; margin-bottom: 10px; color: #8B0000; }
+        .stat-card p { font-size: 16px; color: #DC143C; font-weight: 600; }
+        .officials-grid { display: flex; flex-direction: column; align-items: center; gap: 25px; max-width: 400px; margin: 0 auto; }
+        .official-card { background: #f8f9fa; border-radius: 12px; padding: 20px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; width: 100%; }
+        .official-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+        .official-img { width: 120px; height: 120px; border-radius: 50%; background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%); margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; }
+        .official-img svg { width: 60px; height: 60px; fill: white; }
+        .official-card h3 { color: #333; margin-bottom: 8px; font-size: 18px; }
+        .official-card p { color: #8B0000; font-weight: bold; }
+        .table-container { overflow-x: auto; margin-top: 20px; }
+        table { width: 100%; border-collapse: collapse; background: white; }
+        table thead { background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%); color: white; }
+        table th { padding: 15px; text-align: right; font-weight: bold; }
+        table td { padding: 12px 15px; border-bottom: 1px solid #eee; }
+        table tbody tr:hover { background: #f8f9fa; }
+        .rank-badge { display: inline-block; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; color: white; background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%); }
+        .points { color: #8B0000; font-weight: bold; font-size: 18px; }
+        .info-box { background: #f8f9fa; border-right: 4px solid #8B0000; padding: 20px; margin-bottom: 20px; border-radius: 8px; }
+        .info-box h3 { color: #8B0000; margin-bottom: 15px; font-size: 20px; }
+        .info-box p, .info-box ul { color: #666; line-height: 1.8; margin-bottom: 10px; }
+        .info-box ul { margin-right: 20px; }
+        .info-box li { margin-bottom: 10px; }
+        .service-card { background: white; border: 2px solid #eee; border-radius: 12px; padding: 20px; margin-bottom: 15px; transition: all 0.3s; }
+        .service-card:hover { border-color: #8B0000; box-shadow: 0 5px 15px rgba(139,0,0,0.1); }
+        .service-card h4 { color: #8B0000; margin-bottom: 10px; font-size: 18px; }
+        .service-card p { color: #666; line-height: 1.6; }
+        .free-badge { background: #28a745; color: white; padding: 4px 10px; border-radius: 15px; font-size: 12px; margin-right: 10px; }
+        .location-section { text-align: center; }
+        .location-img { width: 100%; max-width: 800px; height: 450px; border-radius: 12px; margin: 20px auto; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.2); position: relative; background: url('https://i.ibb.co/fdLhRRY7/9568662668-105488459440074-1767511325549.png') center center / cover no-repeat, linear-gradient(135deg, #8B0000 0%, #DC143C 100%); display: flex; align-items: flex-end; justify-content: center; }
+        .location-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(139,0,0,0.95) 0%, rgba(139,0,0,0.7) 50%, transparent 100%); padding: 30px; color: white; font-size: 24px; font-weight: bold; text-align: center; }
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; z-index: 999; }
+        .overlay.active { display: block; }
+        .apply-section { text-align: center; margin-top: 30px; }
+        .apply-btn { display: inline-block; padding: 18px 50px; background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%); color: white; text-decoration: none; border-radius: 50px; font-size: 20px; font-weight: bold; transition: all 0.3s; box-shadow: 0 5px 20px rgba(139,0,0,0.3); }
+        .apply-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(139,0,0,0.4); }
+        footer { background: rgba(255,255,255,0.1); color: white; text-align: center; padding: 30px 20px; margin-top: 50px; backdrop-filter: blur(10px); }
+        footer p { margin: 5px 0; font-size: 16px; }
+        footer .copyright { font-weight: bold; font-size: 18px; margin-bottom: 10px; }
         @media (max-width: 768px) {
-            .header-content {
-                flex-direction: row;
-            }
-            
-            .title-section h1 {
-                font-size: 16px;
-            }
-            
-            .title-section p {
-                font-size: 12px;
-            }
-            
-            .logo {
-                width: 50px;
-                height: 50px;
-            }
-            
-            .logo svg {
-                width: 30px;
-                height: 30px;
-            }
-            
-            .section {
-                padding: 20px;
-            }
-            
-            .section h2 {
-                font-size: 22px;
-            }
-            
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .officials-grid {
-                grid-template-columns: 1fr;
-                max-width: 400px;
-            }
-            
-            .apply-btn {
-                padding: 15px 40px;
-                font-size: 18px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .container {
-                padding: 20px 10px;
-            }
-            
-            .stat-card {
-                padding: 20px;
-            }
-            
-            .stat-card h3 {
-                font-size: 32px;
-            }
-            
-            .location-img {
-                height: 300px;
-            }
-            
-            .location-overlay {
-                font-size: 18px;
-                padding: 20px;
-            }
+            .title-section h1 { font-size: 16px; }
+            .section { padding: 20px; }
+            .stats-grid { grid-template-columns: 1fr; }
+            table { font-size: 14px; }
         }
     </style>
 </head>
 <body>
-    
     <div class="overlay" id="overlay"></div>
     
     <header>
@@ -482,40 +108,38 @@
         <span class="close-menu" id="closeMenu">×</span>
         <a href="#stats">الإحصائيات</a>
         <a href="#officials">المسؤولين</a>
+        <a href="#members">الطاقم الطبي</a>
+        <a href="#affairs">الشؤون الإدارية</a>
+        <a href="#about">عن الوزارة</a>
+        <a href="#services">الخدمات الطبية</a>
+        <a href="#hospital">المستشفى</a>
         <a href="#location">الموقع</a>
-        <a href="#services">الخدمات</a>
         <a href="#apply">التقديم</a>
     </nav>
 
     <div class="container">
         <section class="section" id="stats">
-            <h2>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
-                الإحصائيات
-            </h2>
+            <h2>الإحصائيات</h2>
             <div class="stats-grid">
                 <div class="stat-card">
                     <div class="stat-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
                     </div>
-                    <h3>15+</h3>
+                    <h3>247</h3>
                     <p>عدد المسعفين</p>
                 </div>
                 <div class="stat-card">
                     <div class="stat-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
                     </div>
-                    <h3>4</h3>
+                    <h3>58</h3>
                     <p>عدد مسؤولي الصحة</p>
                 </div>
             </div>
         </section>
 
         <section class="section" id="officials">
-            <h2>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
-                المسؤولين
-            </h2>
+            <h2>المسؤولين</h2>
             <div class="officials-grid">
                 <div class="official-card">
                     <div class="official-img">
@@ -541,14 +165,163 @@
             </div>
         </section>
 
+        <section class="section" id="members">
+            <h2>أعضاء الطاقم الطبي</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>اسم العضو</th>
+                            <th>اليونت</th>
+                            <th>الرتبة</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>طاحوس بن نيرس</td>
+                            <td>E-41</td>
+                            <td><span class="rank-badge">GMD</span></td>
+                        </tr>
+                        <tr>
+                            <td>خالد بن فهد</td>
+                            <td>E-42</td>
+                            <td><span class="rank-badge">GMD</span></td>
+                        </tr>
+                        <tr>
+                            <td>مارفل الشمري</td>
+                            <td>E-43</td>
+                            <td><span class="rank-badge">GMD</span></td>
+                        </tr>
+                        <tr>
+                            <td>عبدالملك الشمري</td>
+                            <td>E-45</td>
+                            <td><span class="rank-badge">GMD</span></td>
+                        </tr>
+                        <tr>
+                            <td>علي الشمري</td>
+                            <td>E-46</td>
+                            <td><span class="rank-badge">GMD</span></td>
+                        </tr>
+                        <tr>
+                            <td>عيسى</td>
+                            <td>E-47</td>
+                            <td><span class="rank-badge">GMD</span></td>
+                        </tr>
+                        <tr>
+                            <td>فارس عبدالله</td>
+                            <td>E-48</td>
+                            <td><span class="rank-badge">GMD</span></td>
+                        </tr>
+                        <tr>
+                            <td>البيرتو</td>
+                            <td>E-49</td>
+                            <td><span class="rank-badge">NURSE</span></td>
+                        </tr>
+                        <tr>
+                            <td>هاني</td>
+                            <td>E-50</td>
+                            <td><span class="rank-badge">GMD</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="section" id="affairs">
+            <h2>أعضاء الشؤون الإدارية</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>اسم العضو</th>
+                            <th>اليونت</th>
+                            <th>الرتبة</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>صالح صلوحي</td>
+                            <td>S-1</td>
+                            <td><span class="rank-badge">مسؤول الشؤون</span></td>
+                        </tr>
+                        <tr>
+                            <td>مزراتي كلاشنكوف</td>
+                            <td>S-2</td>
+                            <td><span class="rank-badge">نائب مسؤول الشؤون</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="section" id="about">
+            <h2>عن الوزارة</h2>
+            <div class="info-box">
+                <h3>🎯 هدف الوزارة</h3>
+                <p>تقديم أفضل الخدمات الصحية والطبية الطارئة لمواطني LegestyCity، وضمان استجابة سريعة وفعالة في جميع الحالات الطارئة.</p>
+            </div>
+            <div class="info-box">
+                <h3>💡 ما نقدمه للمواطنين</h3>
+                <ul>
+                    <li>استجابة فورية للحالات الطارئة على مدار 24/7</li>
+                    <li>طاقم طبي مدرب على أعلى المستويات</li>
+                    <li>معدات طبية حديثة ومتطورة</li>
+                    <li>رعاية صحية شاملة ومتكاملة</li>
+                    <li>خدمات وقائية وتوعوية مستمرة</li>
+                </ul>
+            </div>
+            <div class="info-box">
+                <h3>🏆 رؤيتنا</h3>
+                <p>أن نكون النموذج الأمثل في تقديم الخدمات الصحية الطارئة، ونساهم في بناء مجتمع صحي آمن لجميع سكان LegestyCity.</p>
+            </div>
+        </section>
+
+        <section class="section" id="services">
+            <h2>الخدمات الطبية</h2>
+            <div class="service-card">
+                <h4><span class="free-badge">مجاناً</span>خدمات الطوارئ</h4>
+                <p>استجابة فورية للحالات الطارئة والحوادث على مدار الساعة</p>
+            </div>
+            <div class="service-card">
+                <h4><span class="free-badge">مجاناً</span>الإسعافات الأولية</h4>
+                <p>تقديم الإسعافات الأولية والرعاية الطبية الفورية</p>
+            </div>
+            <div class="service-card">
+                <h4><span class="free-badge">مجاناً</span>النقل الطبي</h4>
+                <p>نقل آمن وسريع للمرضى إلى المستشفى</p>
+            </div>
+            <div class="service-card">
+                <h4>العمليات الجراحية</h4>
+                <p>إجراء العمليات الجراحية الضرورية والطارئة</p>
+            </div>
+            <div class="service-card">
+                <h4>الفحوصات الطبية</h4>
+                <p>فحوصات شاملة ودقيقة بأحدث الأجهزة</p>
+            </div>
+        </section>
+
+        <section class="section" id="hospital">
+            <h2>المستشفى الجديد</h2>
+            <div class="info-box">
+                <h3>🏥 معلومات المستشفى</h3>
+                <p>قريباً سيتم افتتاح المستشفى الجديد المجهز بأحدث التقنيات الطبية والمرافق الحديثة. سيتم نشر صور وتفاصيل كاملة عن المستشفى بعد الافتتاح الرسمي.</p>
+            </div>
+            <div class="info-box">
+                <h3>📋 مرافق المستشفى</h3>
+                <ul>
+                    <li>قسم الطوارئ مجهز بالكامل</li>
+                    <li>غرف عمليات حديثة</li>
+                    <li>أجنحة للمرضى مريحة</li>
+                    <li>مختبرات طبية متطورة</li>
+                    <li>صيدلية شاملة</li>
+                </ul>
+            </div>
+        </section>
+
         <section class="section" id="location">
-            <h2>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                موقع المستشفى
-            </h2>
+            <h2>موقع المستشفى</h2>
             <div class="location-section">
                 <div class="location-img">
-                    <img src="https://i.ibb.co/fdLhRRY7/9568662668-105488459440074-1767511325549.png" alt="Hospital EMS" loading="eager">
                     <div class="location-overlay">
                         <div>HOSPITAL<br>EMS<br>LegestyCity</div>
                     </div>
@@ -560,10 +333,7 @@
         </section>
 
         <section class="section" id="apply">
-            <h2>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
-                التقديم
-            </h2>
+            <h2>التقديم</h2>
             <div class="apply-section">
                 <p style="margin-bottom: 25px; color: #666; font-size: 18px; line-height: 1.8;">
                     هل ترغب في الانضمام إلى فريق وزارة الصحة في LegestyCity؟<br>
@@ -613,6 +383,4 @@
         });
     </script>
 </body>
-
 </html>
-
