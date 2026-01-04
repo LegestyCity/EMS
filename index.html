@@ -410,11 +410,11 @@
     </footer>
 
     <!-- Admin Access Button -->
-    <button class="admin-access-btn" onclick="showAdminLogin()">⚙️</button>
+    <button class="admin-access-btn" onclick="showAdminLogin()"> </button>
 
     <!-- Admin Login -->
     <div class="admin-login" id="adminLogin">
-        <h2>🔒 تسجيل دخول الإدارة</h2>
+        <h2> تسجيل دخول الشوؤن بالشفره</h2>
         <input type="password" id="adminPassword" placeholder="كلمة المرور" onkeypress="if(event.key==='Enter') adminLogin()">
         <button onclick="adminLogin()">دخول</button>
         <p class="error" id="loginError">كلمة المرور غير صحيحة!</p>
@@ -423,12 +423,12 @@
     <!-- Admin Panel -->
     <div class="admin-panel" id="adminPanel">
         <div class="admin-header">
-            <h1>🎛️ لوحة التحكم - وزارة الصحة</h1>
+            <h1> لوحة التحكم - وزارة الصحة</h1>
             <button class="logout-btn" onclick="adminLogout()">تسجيل خروج</button>
         </div>
 
         <div class="ip-log">
-            <h3>📍 سجل الدخول</h3>
+            <h3> سجل الدخول</h3>
             <div id="ipLog"></div>
         </div>
 
@@ -705,8 +705,8 @@
                     <td>${member.unit}</td>
                     <td><span class="rank-badge">${member.rank}</span></td>
                     <td>
-                        <button class="action-btn edit-btn" onclick="editMember('medical', ${index})">✏️ تعديل</button>
-                        <button class="action-btn delete-btn" onclick="deleteMember('medical', ${index})">🗑️ حذف</button>
+                        <button class="action-btn edit-btn" onclick="editMember('medical', ${index})"> تعديل</button>
+                        <button class="action-btn delete-btn" onclick="deleteMember('medical', ${index})"> حذف</button>
                     </td>
                 </tr>
             `).join('');
@@ -717,8 +717,8 @@
                     <td>${member.unit}</td>
                     <td><span class="rank-badge">${member.rank}</span></td>
                     <td>
-                        <button class="action-btn edit-btn" onclick="editMember('affairs', ${index})">✏️ تعديل</button>
-                        <button class="action-btn delete-btn" onclick="deleteMember('affairs', ${index})">🗑️ حذف</button>
+                        <button class="action-btn edit-btn" onclick="editMember('affairs', ${index})"> تعديل</button>
+                        <button class="action-btn delete-btn" onclick="deleteMember('affairs', ${index})"> حذف</button>
                     </td>
                 </tr>
             `).join('');
@@ -750,3 +750,4 @@
     </script>
 </body>
 </html>
+
