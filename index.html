@@ -1,9 +1,27 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>وزارة الصحة - LegestyCity</title>
+    
+    <!-- Open Graph Meta Tags for Discord/Social Media -->
+    <meta property="og:title" content="وزارة الصحة - LegestyCity EMS">
+    <meta property="og:description" content="خدمة صحية متميزة لمجتمع أفضل | Ministry of Health - Emergency Medical Services">
+    <meta property="og:image" content="https://i.ibb.co/fdLhRRY7/9568662668-105488459440074-1767511325549.png">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="LegestyCity EMS">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="وزارة الصحة - LegestyCity EMS">
+    <meta name="twitter:description" content="خدمة صحية متميزة لمجتمع أفضل">
+    <meta name="twitter:image" content="https://i.ibb.co/fdLhRRY7/9568662668-105488459440074-1767511325549.png">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#8B0000">
     <style>
         * {
             margin: 0;
@@ -279,18 +297,14 @@
             overflow: hidden;
             box-shadow: 0 5px 20px rgba(0,0,0,0.2);
             position: relative;
-            background: #333;
+            background: url('https://i.ibb.co/fdLhRRY7/9568662668-105488459440074-1767511325549.png') center center / cover no-repeat, linear-gradient(135deg, #8B0000 0%, #DC143C 100%);
             display: flex;
-            align-items: center;
+            align-items: flex-end;
             justify-content: center;
         }
         
         .location-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            display: block;
+            display: none;
         }
         
         .location-overlay {
@@ -442,6 +456,7 @@
     </style>
 </head>
 <body>
+    
     <div class="overlay" id="overlay"></div>
     
     <header>
@@ -600,3 +615,4 @@
 </body>
 
 </html>
+
