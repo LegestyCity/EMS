@@ -1,142 +1,111 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>وزارة الصحة - LegestyCity</title>
-    
-    <meta property="og:title" content="وزارة الصحة - LegestyCity EMS">
-    <meta property="og:description" content="خدمة صحية متميزة لمجتمع أفضل">
-    <meta property="og:image" content="https://i.ibb.co/fdLhRRY7/9568662668-105488459440074-1767511325549.png">
-    <meta name="theme-color" content="#8B0000">
-    
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%); min-height: 100vh; }
-        header { background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 20px 0; position: sticky; top: 0; z-index: 100; }
-        .header-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
-        .logo-section { display: flex; align-items: center; gap: 15px; }
-        .logo { width: 60px; height: 60px; background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; }
-        .logo svg { width: 35px; height: 35px; fill: white; }
-        .title-section h1 { color: #333; font-size: 24px; margin-bottom: 5px; }
-        .title-section p { color: #666; font-size: 14px; }
-        .menu-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 10px; }
-        .menu-toggle span { width: 30px; height: 3px; background: #8B0000; border-radius: 2px; transition: all 0.3s; }
-        .nav-menu { position: fixed; top: 0; right: -300px; width: 300px; height: 100vh; background: white; box-shadow: -2px 0 10px rgba(0,0,0,0.1); transition: right 0.3s; z-index: 1000; padding: 80px 30px 30px; overflow-y: auto; }
-        .nav-menu.active { right: 0; }
-        .nav-menu a { display: block; padding: 15px 0; color: #333; text-decoration: none; font-size: 18px; border-bottom: 1px solid #eee; transition: color 0.3s; }
-        .nav-menu a:hover { color: #8B0000; }
-        .close-menu { position: absolute; top: 20px; left: 20px; font-size: 30px; cursor: pointer; color: #8B0000; }
-        
-        /* Admin Panel Styles */
-        .admin-login { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); z-index: 2000; display: none; max-width: 400px; width: 90%; }
-        .admin-login.active { display: block; }
-        .admin-login h2 { color: #8B0000; margin-bottom: 20px; text-align: center; }
-        .admin-login input { width: 100%; padding: 12px; margin-bottom: 15px; border: 2px solid #eee; border-radius: 8px; font-size: 16px; }
-        .admin-login input:focus { outline: none; border-color: #8B0000; }
-        .admin-login button { width: 100%; padding: 12px; background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%); color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; }
-        .admin-login button:hover { opacity: 0.9; }
-        .admin-login .error { color: #dc3545; text-align: center; margin-top: 10px; display: none; }
-        
-        .admin-panel { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: white; z-index: 1500; overflow-y: auto; padding: 20px; }
-        .admin-panel.active { display: block; }
-        .admin-header { background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%); color: white; padding: 20px; border-radius: 10px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
-        .admin-header h1 { font-size: 24px; }
-        .logout-btn { background: white; color: #8B0000; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
-        .logout-btn:hover { opacity: 0.9; }
-        
-        .admin-tabs { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
-        .admin-tab { padding: 12px 24px; background: #f8f9fa; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; transition: all 0.3s; }
-        .admin-tab.active { background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%); color: white; }
-        
-        .admin-content { background: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        
-        .add-member-btn { background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%); color: white; padding: 12px 24px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin-bottom: 20px; }
-        .add-member-btn:hover { opacity: 0.9; }
-        
-        .member-form { background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 20px; display: none; }
-        .member-form.active { display: block; }
-        .member-form input, .member-form select { width: 100%; padding: 10px; margin-bottom: 10px; border: 2px solid #eee; border-radius: 8px; }
-        .member-form button { padding: 10px 20px; margin-left: 10px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
-        .save-btn { background: #28a745; color: white; }
-        .cancel-btn { background: #6c757d; color: white; }
-        
-        .admin-table { width: 100%; border-collapse: collapse; }
-        .admin-table th { background: #8B0000; color: white; padding: 12px; text-align: right; }
-        .admin-table td { padding: 12px; border-bottom: 1px solid #eee; }
-        .admin-table tr:hover { background: #f8f9fa; }
-        
-        .action-btn { padding: 6px 12px; margin: 0 2px; border: none; border-radius: 5px; cursor: pointer; font-size: 14px; }
-        .edit-btn { background: #ffc107; color: #000; }
-        .delete-btn { background: #dc3545; color: white; }
-        .action-btn:hover { opacity: 0.8; }
-        
-        .ip-log { background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
-        .ip-log h3 { color: #8B0000; margin-bottom: 10px; }
-        .ip-item { padding: 8px; background: white; margin-bottom: 5px; border-radius: 5px; font-size: 14px; }
-        
-        .admin-access-btn { position: fixed; bottom: 20px; left: 20px; background: #333; color: white; padding: 10px 15px; border-radius: 50%; width: 50px; height: 50px; border: none; cursor: pointer; font-size: 20px; z-index: 500; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
-        .admin-access-btn:hover { background: #555; }
-        
-        @media (max-width: 768px) {
-            .admin-header { flex-direction: column; gap: 10px; text-align: center; }
-            .admin-tabs { flex-direction: column; }
-            .admin-tab { width: 100%; }
-        }
-        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
-        .section { background: white; border-radius: 15px; padding: 30px; margin-bottom: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
-        .section h2 { color: #8B0000; margin-bottom: 25px; font-size: 28px; border-right: 4px solid #8B0000; padding-right: 15px; }
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
-        .stat-card { background: white; color: #8B0000; padding: 30px; border-radius: 12px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; box-shadow: 0 3px 10px rgba(0,0,0,0.1); position: relative; }
-        .stat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%); }
-        .stat-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(139,0,0,0.2); }
-        .stat-icon { width: 60px; height: 60px; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%); border-radius: 50%; }
-        .stat-icon svg { width: 32px; height: 32px; fill: white; }
-        .stat-card h3 { font-size: 40px; margin-bottom: 10px; color: #8B0000; }
-        .stat-card p { font-size: 16px; color: #DC143C; font-weight: 600; }
-        .officials-grid { display: flex; flex-direction: column; align-items: center; gap: 25px; max-width: 400px; margin: 0 auto; }
-        .official-card { background: #f8f9fa; border-radius: 12px; padding: 20px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; width: 100%; }
-        .official-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
-        .official-img { width: 120px; height: 120px; border-radius: 50%; background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%); margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; }
-        .official-img svg { width: 60px; height: 60px; fill: white; }
-        .official-card h3 { color: #333; margin-bottom: 8px; font-size: 18px; }
-        .official-card p { color: #8B0000; font-weight: bold; }
-        .table-container { overflow-x: auto; margin-top: 20px; }
-        table { width: 100%; border-collapse: collapse; background: white; }
-        table thead { background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%); color: white; }
-        table th { padding: 15px; text-align: right; font-weight: bold; }
-        table td { padding: 12px 15px; border-bottom: 1px solid #eee; }
-        table tbody tr:hover { background: #f8f9fa; }
-        .rank-badge { display: inline-block; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; color: white; background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%); }
-        .points { color: #8B0000; font-weight: bold; font-size: 18px; }
-        .info-box { background: #f8f9fa; border-right: 4px solid #8B0000; padding: 20px; margin-bottom: 20px; border-radius: 8px; }
-        .info-box h3 { color: #8B0000; margin-bottom: 15px; font-size: 20px; }
-        .info-box p, .info-box ul { color: #666; line-height: 1.8; margin-bottom: 10px; }
-        .info-box ul { margin-right: 20px; }
-        .info-box li { margin-bottom: 10px; }
-        .service-card { background: white; border: 2px solid #eee; border-radius: 12px; padding: 20px; margin-bottom: 15px; transition: all 0.3s; }
-        .service-card:hover { border-color: #8B0000; box-shadow: 0 5px 15px rgba(139,0,0,0.1); }
-        .service-card h4 { color: #8B0000; margin-bottom: 10px; font-size: 18px; }
-        .service-card p { color: #666; line-height: 1.6; }
-        .free-badge { background: #28a745; color: white; padding: 4px 10px; border-radius: 15px; font-size: 12px; margin-right: 10px; }
-        .location-section { text-align: center; }
-        .location-img { width: 100%; max-width: 800px; height: 450px; border-radius: 12px; margin: 20px auto; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.2); position: relative; background: url('https://i.ibb.co/fdLhRRY7/9568662668-105488459440074-1767511325549.png') center center / cover no-repeat, linear-gradient(135deg, #8B0000 0%, #DC143C 100%); display: flex; align-items: flex-end; justify-content: center; }
-        .location-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(139,0,0,0.95) 0%, rgba(139,0,0,0.7) 50%, transparent 100%); padding: 30px; color: white; font-size: 24px; font-weight: bold; text-align: center; }
-        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; z-index: 999; }
-        .overlay.active { display: block; }
-        .apply-section { text-align: center; margin-top: 30px; }
-        .apply-btn { display: inline-block; padding: 18px 50px; background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%); color: white; text-decoration: none; border-radius: 50px; font-size: 20px; font-weight: bold; transition: all 0.3s; box-shadow: 0 5px 20px rgba(139,0,0,0.3); }
-        .apply-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(139,0,0,0.4); }
-        footer { background: rgba(255,255,255,0.1); color: white; text-align: center; padding: 30px 20px; margin-top: 50px; backdrop-filter: blur(10px); }
-        footer p { margin: 5px 0; font-size: 16px; }
-        footer .copyright { font-weight: bold; font-size: 18px; margin-bottom: 10px; }
-        @media (max-width: 768px) {
-            .title-section h1 { font-size: 16px; }
-            .section { padding: 20px; }
-            .stats-grid { grid-template-columns: 1fr; }
-            table { font-size: 14px; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>وزارة الصحة - LegestyCity</title>
+<meta property="og:title" content="وزارة الصحة - LegestyCity EMS">
+<meta property="og:description" content="خدمة صحية متميزة لمجتمع أفضل">
+<meta property="og:image" content="https://i.ibb.co/fdLhRRY7/9568662668-105488459440074-1767511325549.png">
+<meta name="theme-color" content="#8B0000">
+<style>
+/* ==================== Styles ================ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%); min-height: 100vh; }
+header { background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 20px 0; position: sticky; top: 0; z-index: 100; }
+.header-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+.logo-section { display: flex; align-items: center; gap: 15px; }
+.logo { width: 60px; height: 60px; background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+.logo svg { width: 35px; height: 35px; fill: white; }
+.title-section h1 { color: #333; font-size: 24px; margin-bottom: 5px; }
+.title-section p { color: #666; font-size: 14px; }
+.menu-toggle { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 10px; }
+.menu-toggle span { width: 30px; height: 3px; background: #8B0000; border-radius: 2px; transition: all 0.3s; }
+.nav-menu { position: fixed; top: 0; right: -300px; width: 300px; height: 100vh; background: white; box-shadow: -2px 0 10px rgba(0,0,0,0.1); transition: right 0.3s; z-index: 1000; padding: 80px 30px 30px; overflow-y: auto; }
+.nav-menu.active { right: 0; }
+.nav-menu a { display: block; padding: 15px 0; color: #333; text-decoration: none; font-size: 18px; border-bottom: 1px solid #eee; transition: color 0.3s; }
+.nav-menu a:hover { color: #8B0000; }
+.close-menu { position: absolute; top: 20px; left: 20px; font-size: 30px; cursor: pointer; color: #8B0000; }
+
+/* Admin Panel Styles */
+.admin-login { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); z-index: 2000; display: none; max-width: 400px; width: 90%; }
+.admin-login.active { display: block; }
+.admin-login h2 { color: #8B0000; margin-bottom: 20px; text-align: center; }
+.admin-login input { width: 100%; padding: 12px; margin-bottom: 15px; border: 2px solid #eee; border-radius: 8px; font-size: 16px; }
+.admin-login input:focus { outline: none; border-color: #8B0000; }
+.admin-login button { width: 100%; padding: 12px; background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%); color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; }
+.admin-login button:hover { opacity: 0.9; }
+.admin-login .error { color: #dc3545; text-align: center; margin-top: 10px; display: none; }
+
+.admin-panel { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: white; z-index: 1500; overflow-y: auto; padding: 20px; }
+.admin-panel.active { display: block; }
+.admin-header { background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%); color: white; padding: 20px; border-radius: 10px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
+.admin-header h1 { font-size: 24px; }
+.logout-btn { background: white; color: #8B0000; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+.logout-btn:hover { opacity: 0.9; }
+.admin-tabs { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+.admin-tab { padding: 12px 24px; background: #f8f9fa; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; transition: all 0.3s; }
+.admin-tab.active { background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%); color: white; }
+.admin-content { background: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+
+.add-member-btn { background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%); color: white; padding: 12px 24px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin-bottom: 20px; }
+.add-member-btn:hover { opacity: 0.9; }
+.member-form { background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 20px; display: none; }
+.member-form.active { display: block; }
+.member-form input, .member-form select { width: 100%; padding: 10px; margin-bottom: 10px; border: 2px solid #eee; border-radius: 8px; }
+.member-form button { padding: 10px 20px; margin-left: 10px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+.save-btn { background: #28a745; color: white; }
+.cancel-btn { background: #6c757d; color: white; }
+
+.admin-table { width: 100%; border-collapse: collapse; }
+.admin-table th { background: #8B0000; color: white; padding: 12px; text-align: right; }
+.admin-table td { padding: 12px; border-bottom: 1px solid #eee; }
+.admin-table tr:hover { background: #f8f9fa; }
+.action-btn { padding: 6px 12px; margin: 0 2px; border: none; border-radius: 5px; cursor: pointer; font-size: 14px; }
+.edit-btn { background: #ffc107; color: #000; }
+.delete-btn { background: #dc3545; color: white; }
+.action-btn:hover { opacity: 0.8; }
+
+.admin-access-btn { position: fixed; bottom: 20px; left: 20px; background: #333; color: white; padding: 10px 15px; border-radius: 50%; width: 50px; height: 50px; border: none; cursor: pointer; font-size: 20px; z-index: 500; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+.admin-access-btn:hover { background: #555; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+.section { background: white; border-radius: 15px; padding: 30px; margin-bottom: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+.section h2 { color: #8B0000; margin-bottom: 25px; font-size: 28px; border-right: 4px solid #8B0000; padding-right: 15px; }
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
+.stat-card { background: white; color: #8B0000; padding: 30px; border-radius: 12px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; box-shadow: 0 3px 10px rgba(0,0,0,0.1); position: relative; }
+.stat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%); }
+.stat-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(139,0,0,0.2); }
+.stat-icon { width: 60px; height: 60px; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%); border-radius: 50%; }
+.stat-icon svg { width: 32px; height: 32px; fill: white; }
+.stat-card h3 { font-size: 40px; margin-bottom: 10px; color: #8B0000; }
+.stat-card p { font-size: 16px; color: #DC143C; font-weight: 600; }
+.officials-grid { display: flex; flex-direction: column; align-items: center; gap: 25px; max-width: 400px; margin: 0 auto; }
+.official-card { background: #f8f9fa; border-radius: 12px; padding: 20px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; width: 100%; }
+.official-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+.official-img { width: 120px; height: 120px; border-radius: 50%; background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%); margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; }
+.official-img svg { width: 60px; height: 60px; fill: white; }
+.official-card h3 { color: #333; margin-bottom: 8px; font-size: 18px; }
+.official-card p { color: #8B0000; font-weight: bold; }
+.table-container { overflow-x: auto; margin-top: 20px; }
+table { width: 100%; border-collapse: collapse; background: white; }
+table thead { background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%); color: white; }
+table th { padding: 15px; text-align: right; font-weight: bold; }
+table td { padding: 12px 15px; border-bottom: 1px solid #eee; }
+table tbody tr:hover { background: #f8f9fa; }
+.rank-badge { display: inline-block; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; color: white; background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%); }
+.points { color: #8B0000; font-weight: bold; font-size: 18px; }
+
+.overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; z-index: 999; }
+.overlay.active { display: block; }
+
+@media (max-width: 768px) {
+.title-section h1 { font-size: 16px; }
+.section { padding: 20px; }
+.stats-grid { grid-template-columns: 1fr; }
+table { font-size: 14px; }
+}
+</style>
 </head>
 <body>
     <div class="overlay" id="overlay"></div>
@@ -336,9 +305,13 @@
         <p>جميع الحقوق محفوظة</p>
         <p style="margin-top: 10px; font-size: 14px;">وزارة الصحة - BY : H1IWO </p>
     </footer>
+    
+<!-- Admin Panel Button -->
+<button class="admin-access-btn" onclick="showAdminLogin()">🔑</button>
 
+<!-- باقي الأقسام مثل المسؤولين، الخدمات، المستشفى... سيتم دمجها كما في الكود السابق -->
 
-<!-- Admin Login -->
+<!-- Admin Login & Panel -->
 <div class="admin-login" id="adminLogin">
   <h2>تسجيل دخول لوحة التحكم</h2>
   <input type="password" id="adminPassword" placeholder="كلمة المرور" onkeypress="if(event.key==='Enter') adminLogin()">
@@ -346,7 +319,6 @@
   <p id="loginError" style="color:red;display:none;">كلمة المرور خاطئة!</p>
 </div>
 
-<!-- Admin Panel -->
 <div class="admin-panel" id="adminPanel">
   <button onclick="adminLogout()">تسجيل خروج</button>
   
@@ -395,7 +367,7 @@
 </div>
 
 <script>
-const ADMIN_PASSWORD = '12345'; // غيري كلمة المرور هنا
+const ADMIN_PASSWORD = '12345';
 let medicalStaff = JSON.parse(localStorage.getItem('medicalStaff')) || [];
 let affairsStaff = JSON.parse(localStorage.getItem('affairsStaff')) || [];
 
@@ -403,7 +375,6 @@ function showAdminLogin(){
   document.getElementById('adminLogin').classList.add('active');
   document.getElementById('overlay').classList.add('active');
 }
-
 function adminLogin(){
   const pass = document.getElementById('adminPassword').value;
   if(pass===ADMIN_PASSWORD){
@@ -416,20 +387,16 @@ function adminLogin(){
     setTimeout(()=>document.getElementById('loginError').style.display='none',2000);
   }
 }
-
 function adminLogout(){
   document.getElementById('adminPanel').classList.remove('active');
   document.getElementById('adminPassword').value='';
 }
-
 function switchTab(tab,el){
   document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
   el.classList.add('active');
   document.getElementById('medicalSection').classList.toggle('active',tab==='medical');
   document.getElementById('affairsSection').classList.toggle('active',tab==='affairs');
 }
-
-// Form Controls
 function showAddForm(type){
   document.getElementById(type+'Form').classList.add('active');
   document.getElementById('editIndex'+(type==='medical'?'Medical':'Affairs')).value='';
@@ -437,17 +404,13 @@ function showAddForm(type){
   document.getElementById(type+'Unit').value='';
   document.getElementById(type+'Rank').value='';
 }
-function cancelForm(type){
-  document.getElementById(type+'Form').classList.remove('active');
-}
-
+function cancelForm(type){ document.getElementById(type+'Form').classList.remove('active'); }
 function saveMember(type){
   const name = document.getElementById(type+'Name').value.trim();
   const unit = document.getElementById(type+'Unit').value.trim();
   const rank = document.getElementById(type+'Rank').value.trim();
   const editIndex = document.getElementById('editIndex'+(type==='medical'?'Medical':'Affairs')).value;
   if(!name||!unit||!rank){ alert('املأ جميع الحقول'); return; }
-  
   if(type==='medical'){
     if(editIndex!==''){ medicalStaff[editIndex]={name,unit,rank}; }
     else { medicalStaff.push({name,unit,rank}); }
@@ -457,10 +420,8 @@ function saveMember(type){
     else { affairsStaff.push({name,unit,rank}); }
     localStorage.setItem('affairsStaff', JSON.stringify(affairsStaff));
   }
-  cancelForm(type);
-  renderTables();
+  cancelForm(type); renderTables();
 }
-
 function editMember(type,index){
   const member = type==='medical'? medicalStaff[index]:affairsStaff[index];
   document.getElementById(type+'Name').value = member.name;
@@ -469,7 +430,6 @@ function editMember(type,index){
   document.getElementById('editIndex'+(type==='medical'?'Medical':'Affairs')).value=index;
   document.getElementById(type+'Form').classList.add('active');
 }
-
 function deleteMember(type,index){
   if(confirm('هل أنت متأكد من الحذف؟')){
     if(type==='medical'){ medicalStaff.splice(index,1); localStorage.setItem('medicalStaff',JSON.stringify(medicalStaff)); }
@@ -477,12 +437,11 @@ function deleteMember(type,index){
     renderTables();
   }
 }
-
 function renderTables(){
   const medTable = document.getElementById('medicalTable');
   const affTable = document.getElementById('affairsTable');
   medTable.innerHTML = '';
-  affairsTable.innerHTML = '';
+  affTable.innerHTML = '';
   medicalStaff.forEach((m,i)=>{
     medTable.innerHTML += `<tr>
       <td>${m.name}</td><td>${m.unit}</td><td>${m.rank}</td>
@@ -502,6 +461,3 @@ function renderTables(){
 
 </body>
 </html>
-
-
-
