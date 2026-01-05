@@ -1,0 +1,104 @@
+/* --- عام --- */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #000;
+    color: #fff;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* --- الهيدر --- */
+header {
+    background: #7a0c0c;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ministry-logo {
+    height: 50px;
+}
+
+.admin-btn {
+    background: #ff0000;
+    border: none;
+    padding: 8px 12px;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.admin-btn .glitch {
+    position: relative;
+    font-weight: bold;
+}
+
+/* --- القوائم --- */
+.nav-menu {
+    background: #111;
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 250px;
+    height: 100%;
+    padding: 20px;
+    transition: right 0.3s;
+}
+
+.nav-menu.active {
+    right: 0;
+}
+
+.nav-menu a {
+    display: block;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+/* --- الأقسام --- */
+.section {
+    padding: 40px 20px;
+}
+
+.stats-grid, .officials-grid {
+    display: flex;
+    gap: 15px;
+}
+
+.stat-card, .official-card, .service-card {
+    background: #222;
+    padding: 20px;
+    border-radius: 10px;
+    flex: 1;
+}
+
+/* --- زر التقديم --- */
+.apply-btn {
+    background: #ff0000;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+/* --- الفوتر --- */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #111;
+}
