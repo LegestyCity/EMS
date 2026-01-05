@@ -337,6 +337,262 @@
         <p style="margin-top: 10px; font-size: 14px;">وزارة الصحة - BY : H1IWO </p>
     </footer>
 
+<!-- Admin Access Button -->
+
+<button class="admin-access-btn" onclick="showAdminLogin()">دخول لوحة التحكم</button>
+
+<!-- Admin Login -->
+<div class="admin-login" id="adminLogin">
+    <h2>تسجيل دخول الشؤون</h2>
+    <input type="password" id="adminPassword" placeholder="كلمة المرور" onkeypress="if(event.key==='Enter') adminLogin()">
+    <button onclick="adminLogin()">دخول</button>
+    <p class="error" id="loginError">كلمة المرور غير صحيحة!</p>
+</div>
+<!-- Admin Panel -->
+<div class="admin-panel" id="adminPanel">
+    <div class="admin-header">
+        <h1>لوحة التحكم - وزارة الصحة</h1>
+        <button class="logout-btn" onclick="adminLogout()">تسجيل خروج</button>
+    </div>
+
+    <div class="ip-log">
+        <h3>سجل الدخول</h3>
+        <div id="ipLog"></div>
+    </div>
+
+    <div class="admin-tabs">
+        <button class="admin-tab active" onclick="switchTab('medical')">الطاقم الطبي</button>
+        <button class="admin-tab" onclick="switchTab('affairs')">الشؤون الإدارية</button>
+    </div>
+
+    <div class="admin-content">
+        <!-- Medical Staff Section -->
+        <div id="medicalSection" class="tab-content">
+            <button class="add-member-btn" onclick="showAddForm('medical')">إضافة عضو جديد</button>
+            
+            <div class="member-form" id="medicalForm">
+                <h3>إضافة/تعديل عضو الطاقم الطبي</h3>
+                <input type="hidden" id="editIndex">
+                <input type="text" id="medicalName" placeholder="اسم العضو">
+                <input type="text" id="medicalUnit" placeholder="اليونت (مثل: E-51)">
+                <input type="text" id="medicalRank" placeholder="الرتبة (مثل: GMD)">
+                <button class="save-btn" onclick="saveMember('medical')">حفظ</button>
+                <button class="cancel-btn" onclick="cancelForm()">إلغاء</button>
+            </div>
+
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>الاسم</th>
+                        <th>اليونت</th>
+                        <th>الرتبة</th>
+                        <th>الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody id="medicalTableBody"></tbody>
+            </table>
+        </div>
+
+        <!-- Affairs Section -->
+        <div id="affairsSection" class="tab-content" style="display:none;">
+            <button class="add-member-btn" onclick="showAddForm('affairs')">إضافة عضو جديد</button>
+            
+            <div class="member-form" id="affairsForm">
+                <h3>إضافة/تعديل عضو الشؤون</h3>
+                <input type="hidden" id="editIndexAffairs">
+                <input type="text" id="affairsName" placeholder="اسم العضو">
+                <input type="text" id="affairsUnit" placeholder="اليونت (مثل: S-3)">
+                <input type="text" id="affairsRank" placeholder="الرتبة">
+                <button class="save-btn" onclick="saveMember('affairs')">حفظ</button>
+                <button class="cancel-btn" onclick="cancelForm()">إلغاء</button>
+            </div>
+
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>الاسم</th>
+                        <th>اليونت</th>
+                        <th>الرتبة</th>
+                        <th>الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody id="affairsTableBody"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+// Admin Panel
+const ADMIN_PASSWORD = '01011101010000101010101111110101010101010.1'; // ضع كلمة مرور خاصة بك
+let medicalStaff = [];
+let affairsStaff = [];
+let ipLogs = [];
+
+// استرجاع البيانات من LocalStorage
+if(localStorage.getItem('medicalStaff')) medicalStaff = JSON.parse(localStorage.getItem('medicalStaff'));
+if(localStorage.getItem('affairsStaff')) affairsStaff = JSON.parse(localStorage.getItem('affairsStaff'));
+
+// IP Log
+function getUserIP() {
+    fetch('https://api.ipify.org?format=json')
+    .then(res => res.json())
+    .then(data => {
+        const timestamp = new Date().toLocaleString('ar-SA');
+        ipLogs.push({ip: data.ip, time: timestamp});
+        updateIPLog();
+    }).catch(() => {
+        const timestamp = new Date().toLocaleString('ar-SA');
+        ipLogs.push({ip:'H1IWO', time: timestamp});
+        updateIPLog();
+    });
+}
+
+function updateIPLog() {
+    const ipLogDiv = document.getElementById('ipLog');
+    ipLogDiv.innerHTML = ipLogs.map(log => `<div class="ip-item">🕐 ${log.time}</div>`).reverse().slice(0,10).join('');
+}
+
+function showAdminLogin() {
+    document.getElementById('adminLogin').classList.add('active');
+}
+
+function adminLogin() {
+    const password = document.getElementById('adminPassword').value;
+    if(password === ADMIN_PASSWORD) {
+        document.getElementById('adminLogin').classList.remove('active');
+        document.getElementById('adminPanel').classList.add('active');
+        getUserIP();
+        renderTables();
+    } else {
+        document.getElementById('loginError').style.display = 'block';
+        setTimeout(()=>document.getElementById('loginError').style.display='none',3000);
+    }
+}
+
+function adminLogout() {
+    document.getElementById('adminPanel').classList.remove('active');
+    document.getElementById('adminPassword').value='';
+}
+
+function switchTab(tab) {
+    document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));
+    event.target.classList.add('active');
+
+    document.getElementById('medicalSection').style.display = (tab==='medical')?'block':'none';
+    document.getElementById('affairsSection').style.display = (tab==='affairs')?'block':'none';
+}
+
+function showAddForm(type) {
+    document.getElementById(type+'Form').classList.add('active');
+    if(type==='medical') {
+        document.getElementById('editIndex').value='';
+        document.getElementById('medicalName').value='';
+        document.getElementById('medicalUnit').value='';
+        document.getElementById('medicalRank').value='';
+    } else {
+        document.getElementById('editIndexAffairs').value='';
+        document.getElementById('affairsName').value='';
+        document.getElementById('affairsUnit').value='';
+        document.getElementById('affairsRank').value='';
+    }
+}
+
+function cancelForm() {
+    document.getElementById('medicalForm').classList.remove('active');
+    document.getElementById('affairsForm').classList.remove('active');
+}
+
+function saveMember(type) {
+    if(type==='medical') {
+        const name=document.getElementById('medicalName').value;
+        const unit=document.getElementById('medicalUnit').value;
+        const rank=document.getElementById('medicalRank').value;
+        const editIndex=document.getElementById('editIndex').value;
+
+        if(!name||!unit||!rank){ alert('الرجاء ملء جميع الحقول'); return; }
+
+        if(editIndex!==''){ medicalStaff[editIndex]={name,unit,rank}; }
+        else { medicalStaff.push({name,unit,rank}); }
+
+        localStorage.setItem('medicalStaff', JSON.stringify(medicalStaff));
+    } else {
+        const name=document.getElementById('affairsName').value;
+        const unit=document.getElementById('affairsUnit').value;
+        const rank=document.getElementById('affairsRank').value;
+        const editIndex=document.getElementById('editIndexAffairs').value;
+
+        if(!name||!unit||!rank){ alert('الرجاء ملء جميع الحقول'); return; }
+
+        if(editIndex!==''){ affairsStaff[editIndex]={name,unit,rank}; }
+        else { affairsStaff.push({name,unit,rank}); }
+
+        localStorage.setItem('affairsStaff', JSON.stringify(affairsStaff));
+    }
+
+    cancelForm();
+    renderTables();
+}
+
+function editMember(type,index){
+    showAddForm(type);
+    if(type==='medical'){
+        const member = medicalStaff[index];
+        document.getElementById('medicalName').value=member.name;
+        document.getElementById('medicalUnit').value=member.unit;
+        document.getElementById('medicalRank').value=member.rank;
+        document.getElementById('editIndex').value=index;
+    } else {
+        const member = affairsStaff[index];
+        document.getElementById('affairsName').value=member.name;
+        document.getElementById('affairsUnit').value=member.unit;
+        document.getElementById('affairsRank').value=member.rank;
+        document.getElementById('editIndexAffairs').value=index;
+    }
+}
+
+function deleteMember(type,index){
+    if(confirm('هل أنت متأكد من حذف هذا العضو؟')){
+        if(type==='medical'){ medicalStaff.splice(index,1); localStorage.setItem('medicalStaff', JSON.stringify(medicalStaff)); }
+        else { affairsStaff.splice(index,1); localStorage.setItem('affairsStaff', JSON.stringify(affairsStaff)); }
+        renderTables();
+    }
+}
+
+function renderTables(){
+    const medicalBody = document.getElementById('medicalTableBody');
+    const affairsBody = document.getElementById('affairsTableBody');
+
+    medicalBody.innerHTML = medicalStaff.map((member,index)=>`
+        <tr>
+            <td>${member.name}</td>
+            <td>${member.unit}</td>
+            <td><span class="rank-badge">${member.rank}</span></td>
+            <td>
+                <button class="action-btn edit-btn" onclick="editMember('medical',${index})">تعديل</button>
+                <button class="action-btn delete-btn" onclick="deleteMember('medical',${index})">حذف</button>
+            </td>
+        </tr>
+    `).join('');
+
+    affairsBody.innerHTML = affairsStaff.map((member,index)=>`
+        <tr>
+            <td>${member.name}</td>
+            <td>${member.unit}</td>
+            <td><span class="rank-badge">${member.rank}</span></td>
+            <td>
+                <button class="action-btn edit-btn" onclick="editMember('affairs',${index})">تعديل</button>
+                <button class="action-btn delete-btn" onclick="deleteMember('affairs',${index})">حذف</button>
+            </td>
+        </tr>
+    `).join('');
+}
+
+// Initial render
+renderTables();
+</script>
+</body>
+</html>
     <!-- Admin Access Button -->
     <button class="admin-access-btn" onclick="showAdminLogin()"> </button>
 
@@ -679,5 +935,6 @@
     </script>
 </body>
 </html>
+
 
 
